@@ -21,16 +21,6 @@ public func routes(_ router: Router) throws {
         }
     }
 
-    router.get(String.parameter, "posts") { req -> Future<[Post]> in
-        let username = try req.parameters.next(String.self)
-        return Post.query(on: req).filter(\Post.username == username).all()
-    }
-
-    router.get("search") { req -> Future<[Post]> in
-        let query = try req.query.get(String.self, at: ["query"])
-        return Post.query(on: req).filter(\.message ~~ query).all()
-    }
-
     router.post("login") { req -> Future<Token> in
         // pull out the two fields we need
         let username: String = try req.content.syncGet(at: "id")
@@ -64,6 +54,16 @@ public func routes(_ router: Router) throws {
         }
     }
 
+    router.get(String.parameter, "posts") { req -> Future<[Post]> in
+        let username = try req.parameters.next(String.self)
+        return Post.query(on: req).filter(\Post.username == username).all()
+    }
+
+    router.get("search") { req -> Future<[Post]> in
+        let query = try req.query.get(String.self, at: ["query"])
+        return Post.query(on: req).filter(\.message ~~ query).all()
+    }
+
     router.post("post") { req -> Future<Post> in
         // pull out the two fields we need
         let token: UUID = try req.content.syncGet(at: "token")
@@ -86,6 +86,7 @@ public func routes(_ router: Router) throws {
 
             // create a new post and save it to the database
             let post = Post(id: nil, username: token.username, message: message, parent: reply, date: Date())
+            try post.validate()
             return post.create(on: req).map(to: Post.self) { post in
                 return post
             }
