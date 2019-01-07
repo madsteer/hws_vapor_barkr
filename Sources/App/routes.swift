@@ -1,5 +1,6 @@
 import Routing
 import Vapor
+import Fluent
 import FluentSQLite
 
 /// Register your application's routes here.
@@ -23,6 +24,11 @@ public func routes(_ router: Router) throws {
     router.get(String.parameter, "posts") { req -> Future<[Post]> in
         let username = try req.parameters.next(String.self)
         return Post.query(on: req).filter(\Post.username == username).all()
+    }
+
+    router.get("search") { req -> Future<[Post]> in
+        let query = try req.query.get(String.self, at: ["query"])
+        return Post.query(on: req).filter(\.message ~~ query).all()
     }
 
     router.post("login") { req -> Future<Token> in
