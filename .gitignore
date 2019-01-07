@@ -6,6 +6,9 @@
 build/
 DerivedData/
 
+## database
+tooter.db
+
 ## Various settings
 *.pbxuser
 !default.pbxuser
