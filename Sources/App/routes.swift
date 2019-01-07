@@ -56,4 +56,32 @@ public func routes(_ router: Router) throws {
             }
         }
     }
+
+    router.post("post") { req -> Future<Post> in
+        // pull out the two fields we need
+        let token: UUID = try req.content.syncGet(at: "token")
+        let message: String = try req.content.syncGet(at: "message")
+
+        // ensure we have meaningful content
+        guard message.count > 0 else {
+            throw Abort(.badRequest)
+        }
+
+        // use the reply ID if we have one, or default to zero
+        let reply: Int = (try? req.content.syncGet(at: "reply")) ?? 0
+
+        // find the authentication token we were given
+        return Token.find(token, on: req).flatMap(to: Post.self) { token in
+            // if we can't find one, bail out
+            guard let token = token else {
+                throw Abort(.unauthorized)
+            }
+
+            // create a new post and save it to the database
+            let post = Post(id: nil, username: token.username, message: message, parent: reply, date: Date())
+            return post.create(on: req).map(to: Post.self) { post in
+                return post
+            }
+        }
+    }
 }

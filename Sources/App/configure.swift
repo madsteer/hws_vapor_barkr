@@ -28,5 +28,6 @@ public func configure(
     var migrationConfig = MigrationConfig()
     migrationConfig.add(model: User.self, database: .sqlite)
     migrationConfig.add(model: Token.self, database: .sqlite)
+    migrationConfig.add(model: Post.self, database: .sqlite)
     services.register(migrationConfig)
 }
