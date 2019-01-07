@@ -22,6 +22,7 @@
 
 /* Begin PBXBuildFile section */
 		8BDB1EBD21E2B3F5003D3FD5 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDB1EBC21E2B3F5003D3FD5 /* User.swift */; };
+		8BDB1EC021E2FE4F003D3FD5 /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDB1EBF21E2FE4F003D3FD5 /* Token.swift */; };
 		OBJ_1055 /* AppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_16 /* AppTests.swift */; };
 		OBJ_1057 /* App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "hws_vapor_tooter::App::Product" /* App.framework */; };
 		OBJ_1058 /* FluentSQLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "FluentSQLite::FluentSQLite::Product" /* FluentSQLite.framework */; };
@@ -5085,6 +5086,7 @@
 /* Begin PBXFileReference section */
 		8BDB1EBC21E2B3F5003D3FD5 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		8BDB1EBE21E2FBF3003D3FD5 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		8BDB1EBF21E2FE4F003D3FD5 /* Token.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
 		"Console::Command::Product" /* Command.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Command.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		"Console::Console::Product" /* Console.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Console.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		"Console::Logging::Product" /* Logging.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Logging.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -8720,6 +8722,7 @@
 				OBJ_10 /* configure.swift */,
 				OBJ_11 /* routes.swift */,
 				8BDB1EBC21E2B3F5003D3FD5 /* User.swift */,
+				8BDB1EBF21E2FE4F003D3FD5 /* Token.swift */,
 			);
 			name = App;
 			path = Sources/App;
@@ -11761,6 +11764,7 @@
 			buildActionMask = 0;
 			files = (
 				8BDB1EBD21E2B3F5003D3FD5 /* User.swift in Sources */,
+				8BDB1EC021E2FE4F003D3FD5 /* Token.swift in Sources */,
 				OBJ_917 /* boot.swift in Sources */,
 				OBJ_918 /* configure.swift in Sources */,
 				OBJ_919 /* routes.swift in Sources */,
