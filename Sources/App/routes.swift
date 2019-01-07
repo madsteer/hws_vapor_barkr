@@ -8,10 +8,6 @@ import FluentSQLite
 public func routes(_ router: Router) throws {
     let oneDayInSeconds = Double(86400)
 
-    router.get("hello") { req in
-        return "Hello, world!"
-    }
-
     router.post(User.self, at: "create") { req, user -> Future<User> in
         return User.find(user.id!, on: req).flatMap(to: User.self) { existing in
             guard existing == nil else {
@@ -22,6 +18,11 @@ public func routes(_ router: Router) throws {
                 return user
             }
         }
+    }
+
+    router.get(String.parameter, "posts") { req -> Future<[Post]> in
+        let username = try req.parameters.next(String.self)
+        return Post.query(on: req).filter(\Post.username == username).all()
     }
 
     router.post("login") { req -> Future<Token> in
