@@ -1,6 +1,7 @@
 import Vapor
 import FluentSQLite
 
+
 /// Called before your application initializes.
 ///
 /// [Learn More →](https://docs.vapor.codes/3.0/getting-started/structure/#configureswift)
@@ -26,5 +27,6 @@ public func configure(
 
     var migrationConfig = MigrationConfig()
     migrationConfig.add(model: User.self, database: .sqlite)
+    migrationConfig.add(model: Token.self, database: .sqlite)
     services.register(migrationConfig)
 }
